@@ -11,6 +11,16 @@
   box-shadow: 2px 1px 1px 2px rgb(218, 218, 218);
   padding:20px;
   margin-top:30px;
+  padding-top:30px;
+}
+.totalSettlements--container--child{
+  height:700px;
+  overflow:auto;  
+}
+.totalSettlements--container .hireFlex{
+  padding:20px;
+  background:rgba(240,240,240);
+  margin-top:20px;
 }
 .loginForm{
   margin-top:10px;
@@ -60,4 +70,9 @@
   padding:20px;
   background:rgba(240,240,240);
   margin-top:10px;
+}
+.hireFlex--child{
+  background:rgb(225, 225, 225);
+  padding:20px;
+  margin-top:20px;
 }

@@ -16,3 +16,7 @@ export const getWorkers=async ()=>{
     const dataPromise=await fetch(`${serverUrl}/api/V1/worker`);
     return dataPromise.json();    
 }
+export const getHireRecords=async ()=>{
+    const dataPromise=await fetch(`${serverUrl}/api/V1/hire`);
+    return dataPromise.json();       
+}
