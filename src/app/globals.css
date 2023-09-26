@@ -20,6 +20,7 @@
 }
 .loginForm--container{
   height:100vh;
+  width:100vw;
   display:flex;
   flex-flow: column;
   justify-content: center;
@@ -27,4 +28,36 @@
 }
 .loginForm--container button{
   margin-top:30px;
+  width:100%;
+}
+.loginForm--container input{
+  width:100%;
+  height:50px;
+  padding-left:20px;
+}
+.loginForm--container img{
+  border-radius:50%;
+  margin-top:-50px;
+  margin-bottom:50px;
+}
+.totalUsers--container .usersContainer{
+  height:500px;
+  overflow:auto;
+  margin-top:20px;
+}
+.totalWorkers--container .workersContainer{
+  height:500px;
+  overflow:auto;
+  margin-top:20px; 
+}
+.totalWorkers--container .indvUserContainer{
+  padding:20px;
+  background:rgba(240,240,240);
+  margin-top:10px;
+}
+
+.totalUsers--container .indvUserContainer{
+  padding:20px;
+  background:rgba(240,240,240);
+  margin-top:10px;
 }
