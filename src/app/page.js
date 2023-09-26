@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { loginAdmin } from "../../components/apiConnectors/loginAdmin";
 import { getTotalUsers, getTotalWorkers, getUsers, getWorkers, getHireRecords } from "../../components/apiConnectors/getAdminData";
+import { setSettled } from "../../components/apiConnectors/patchRequestors";
 
 import Header from "../../components/header/header";
 
@@ -43,6 +44,14 @@ const Page = () => {
     }
     const response = await loginAdmin(body);
     if (response.loginStatus) setLoggedIn(true);
+  }
+
+  const sendSettlementRequest=async (id,i)=>{
+    const settlementResponse=await setSettled(id);
+    
+    const hireDemo=[...hires];
+    hireDemo[i]=settlementResponse.hireRecords;
+    setHires(hireDemo);
   }
 
   if (loggedIn) {
@@ -109,6 +118,7 @@ const Page = () => {
                         <div className="hireFlex--child">
                           <h5 style={{ fontWeight: "bold" }}> Hire details :  </h5>
                           <p> {`date: ${hr.serviceDate.toString()}`} </p>
+                          <p> {`Service cost: ${hr.serviceCost}`} </p>
                           <p className={hr.settled ? "text-success" : "text-danger"} style={{ fontWeight: "bold" }}> {`Settled: ${hr.settled ? 'True' : 'False'}`} </p>
                           <p className={hr.completed ? "text-success" : "text-danger"} style={{ fontWeight: "bold" }}> {`Completed: ${hr.completed ? 'True' : 'False'}`} </p>
 
@@ -125,7 +135,7 @@ const Page = () => {
                 <h5> Total settlements to be done : </h5>
                 <div className="totalSettlements--container--child">
                   {
-                    hires.map(hr => (
+                    hires.map((hr,i) => (
                       !hr.settled && (<div className="hireFlex">
                         <h5 style={{ fontWeight: "bold" }}> {`${hr.userData.firstName} hired ${hr.workerData.firstName}`} </h5>
                         <h5 style={{ marginTop: 30 }}> {`${hr.userData.firstName} details : `} </h5>
@@ -141,7 +151,10 @@ const Page = () => {
                           <p> {`date: ${hr.serviceDate.toString()}`} </p>
                           <p className={hr.settled ? "text-success" : "text-danger"} style={{ fontWeight: "bold" }}> {`Settled: ${hr.settled ? 'True' : 'False'}`} </p>
                           <p className={hr.completed ? "text-success" : "text-danger"} style={{ fontWeight: "bold" }}> {`Completed: ${hr.completed ? 'True' : 'False'}`} </p>
-
+                          <button className="btn btn-success" onClick={()=>{
+                            console.log(hr);
+                            sendSettlementRequest(hr._id,i)
+                          }}> Set settled </button>
                         </div>
                       </div>)
                     ))
